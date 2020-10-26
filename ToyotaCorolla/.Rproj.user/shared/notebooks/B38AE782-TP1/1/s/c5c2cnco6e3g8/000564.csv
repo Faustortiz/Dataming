@@ -1,0 +1,1 @@
+"0","pie(summary(deleteme$Fuel_Type), labels = c(""GNC"", ""DIESEL"", ""PETROL""), main =""FUEL-TYPE"")"

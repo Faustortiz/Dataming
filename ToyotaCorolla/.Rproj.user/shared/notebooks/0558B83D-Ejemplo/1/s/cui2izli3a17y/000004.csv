@@ -1,0 +1,5 @@
+"0","```r
+
+plot(slm3$residuals ~ data$Price)
+abline(a=0,b=0, col = \"blue\", lwd=2)
+```"

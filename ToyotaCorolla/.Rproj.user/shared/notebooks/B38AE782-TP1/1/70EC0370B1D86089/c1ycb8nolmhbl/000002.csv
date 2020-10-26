@@ -1,0 +1,7 @@
+"0","dataset4 <- filter(dataset4, !(Weight>1200))"
+"0","dataset4 <- filter(dataset4,  !(KM>150000))"
+"0","dataset4 <- filter(dataset4, !(KM<15))"
+"0","dataset4 <- filter(dataset4, !(HP>150))"
+"0","dataset4 <- filter(dataset4, !(Age_08_04<20))"
+"0","          "
+"0",""

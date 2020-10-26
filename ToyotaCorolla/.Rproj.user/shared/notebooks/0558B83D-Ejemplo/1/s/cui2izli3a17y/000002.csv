@@ -1,0 +1,4 @@
+"0","```r
+hist(slm3$residuals , main = \"Histograma de residuales\", freq = F)
+lines(density(slm3$residuals), col=\"red\", lwd=2)
+```"

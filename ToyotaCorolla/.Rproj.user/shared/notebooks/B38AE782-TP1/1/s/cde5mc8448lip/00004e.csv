@@ -1,0 +1,1 @@
+"0","plot(predict(mlr5), datos$Price, ylab = ""Price"" , main = ""Valores predecidos vs actuales"")"

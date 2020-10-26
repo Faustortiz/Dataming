@@ -1,0 +1,4 @@
+"0","dataset = datos[c(""Price"", ""KM"", ""Age_08_04"", ""HP"", ""cc"", ""Doors"", ""Gears"", ""Weight"","
+"0","                  ""Fuel_Type"", ""Central_Lock"", ""Powered_Windows"",""Automatic_airco"")]"
+"0",""
+"0","#dataset1 = deleteme[c(""Price"", ""KM"", ""Age_08_04"", ""HP"", ""cc"", ""Doors"", ""Gears"", ""Weight"", ""Fuel_Type"", ""Central_Lock"", ""Powered_Windows"")]"

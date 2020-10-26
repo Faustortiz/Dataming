@@ -1,0 +1,2 @@
+"0","#boxplot(datos$Fuel_Type, main=""FUEL-TYPE"")"
+"0","boxplot(datos$HP, main=""HP"")"

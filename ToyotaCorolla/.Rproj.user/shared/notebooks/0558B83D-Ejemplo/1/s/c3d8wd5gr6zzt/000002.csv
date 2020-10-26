@@ -1,0 +1,28 @@
+"0","```r
+summary(slm2)
+```"
+"1","
+Call:
+lm(formula = data$Price ~ data$Mfg_Year + data$KM + data$Fuel_Type + 
+    data$Automatic + data$Powered_Windows)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8378.7  -876.2   -45.8   779.5 11510.5 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          -3.467e+06  6.857e+04 -50.555  < 2e-16 ***
+data$Mfg_Year         1.739e+03  3.425e+01  50.790  < 2e-16 ***
+data$KM              -2.013e-02  1.502e-03 -13.401  < 2e-16 ***
+data$Fuel_TypeDiesel  1.139e+03  3.905e+02   2.917  0.00359 ** 
+data$Fuel_TypePetrol  1.156e+02  3.820e+02   0.303  0.76220    
+data$Automatic        7.742e+02  1.770e+02   4.374 1.31e-05 ***
+data$Powered_Windows  9.106e+02  8.538e+01  10.664  < 2e-16 ***
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+Residual standard error: 1527 on 1429 degrees of freedom
+Multiple R-squared:  0.8236,	Adjusted R-squared:  0.8228 
+F-statistic:  1112 on 6 and 1429 DF,  p-value: < 2.2e-16
+"

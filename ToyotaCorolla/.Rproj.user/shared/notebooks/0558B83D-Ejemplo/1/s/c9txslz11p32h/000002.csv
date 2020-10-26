@@ -1,0 +1,4 @@
+"0","```r
+#Seleccion de variables para el analisis.
+dataset <- data[c(\"Price\", \"Mfg_Year\", \"KM\", \"Automatic\", \"Powered_Window\")]
+```"

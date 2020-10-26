@@ -1,0 +1,476 @@
+---
+title: "TP1 - Toyota Corolla"
+author: "Navarro Matias, Ortiz Fausto - Universidad Tecnológica Nacional - Facultad Regional Tucumán"
+date: "11/10/2020"
+output: pdf_document
+---
+
+#######
+# Carga de librerías y datos
+#######
+
+```{r}
+library("dplyr")
+library("gdata")
+library("corrplot")
+library("moments")
+library("fastDummies")
+library("ggplot2")
+library("psych")
+library("car")
+library("corrplot")
+library("caret")
+```
+
+Carga de Datos
+```{r}
+datos = read.csv("ToyotaCorolla.csv")
+```
+
+
+Mostrar los datos del dataset 
+```{r}
+head(datos,20)
+```
+
+Estructura de dataset
+```{r}
+str(datos)
+```
+
+# Formatear algunas variables para una mejor observación
+```{r}
+deleteme = datos
+deleteme$Fuel_Type = as.factor(datos$Fuel_Type)
+deleteme$Mfg_Month =  as.factor(datos$Mfg_Month)
+deleteme$Mfg_Year = as.factor(datos$Mfg_Year)
+deleteme$Met_Color = as.factor(datos$Met_Color)
+deleteme$Automatic = as.factor(datos$Automatic)
+deleteme$Doors = as.factor(datos$Doors)
+deleteme$Cylinders = as.factor(datos$Cylinders)
+deleteme$Gears = as.factor(datos$Gears)
+deleteme$Mfr_Guarantee = as.factor(datos$Mfr_Guarantee)
+deleteme$BOVAG_Guarantee = as.factor(datos$BOVAG_Guarantee)
+deleteme$Guarantee_Period = as.factor(datos$Guarantee_Period)
+deleteme$ABS = as.factor(datos$ABS)
+deleteme$Airbag_1 = as.factor(datos$Airbag_1)
+deleteme$Airbag_2 = as.factor(datos$Airbag_2)
+deleteme$Airco = as.factor(datos$Airco)
+deleteme$Automatic_airco = as.factor(datos$Automatic_airco)
+deleteme$Boardcomputer = as.factor(datos$Boardcomputer)
+deleteme$CD_Player = as.factor(datos$CD_Player)
+deleteme$Central_Lock = as.factor(datos$Central_Lock)
+deleteme$Power_Windows = as.factor(datos$Powered_Windows)
+deleteme$Power_Steering = as.factor(datos$Power_Steering)
+deleteme$Radio = as.factor(datos$Radio)
+deleteme$Mistlamps = as.factor(datos$Mistlamps)
+deleteme$Sport_Model = as.factor(datos$Sport_Model)
+deleteme$Backseat_Divider = as.factor(datos$Backseat_Divider)
+deleteme$Metallic_Rim = as.factor(datos$Metallic_Rim)
+deleteme$Radio_cassette = as.factor(datos$Radio_cassette)
+deleteme$Tow_Bar = as.factor(datos$Tow_Bar)
+        
+
+str(deleteme)
+```
+Al analizar la estructura de "deleteme"  podemos observar que tenemos muchas variables binarias y enumeraciones ya formateados con los tipo
+de dato que tendria que tener el dataset.
+
+```{r}
+summary(deleteme)
+```
+#######
+# Análisis Exploratorio
+#######
+
+Distribución de cada variable del dataset deleteme con boxplot.
+```{r}
+boxplot(deleteme$Age_08_04, main="Age_08_04")
+pie(summary(deleteme$Mfg_Month), main = "MFG-MONTH"  )
+boxplot(deleteme$Price, main = "Price")
+pie(summary(deleteme$Mfg_Year), labels = c("1998","1999","2000","2001", "2001", "2002", "2003", "2004","otro"), main = "MFG-YEAR")
+boxplot(deleteme$KM, main = "KM")
+pie(summary(deleteme$Fuel_Type), labels = c("GNC", "DIESEL", "PETROL"), main ="FUEL-TYPE")
+boxplot(deleteme$HP, main = "HP")
+pie(summary(deleteme$Met_Color), labels = c("SI", "NO"), main = "MET-COLOR")
+pie(summary(deleteme$Automatic), labels = c("SI", "NO"), main = "AUTOMATIC")
+boxplot(deleteme$cc, main="CC")
+pie(summary(deleteme$Doors), labels = c("2", "3", "4", "5"), main = "DOORS")
+pie(summary(deleteme$Cylinders), labels =c("4", "otro"), main =  "CYLINDERS")
+pie(summary(deleteme$Gears), labels = c("3", "4", "5", "6"), main = "GEARS")
+boxplot(deleteme$Quarterly_Tax, main = "QUARTERLY-TAX")
+boxplot(deleteme$Weight, main = "WEIGHT")
+pie(summary(deleteme$Mfr_Guarantee), labels = c("SI", "NO"), main = "MFR-GUARANTE")
+pie(summary(deleteme$BOVAG_Guarantee), labels = c("SI", "NO"), main = "BOVAG-GUARANTE")
+pie(summary(deleteme$Guarantee_Period), main="GUARANTE-PERIOD")
+pie(summary(deleteme$ABS), main="ABS")
+pie(summary(deleteme$Airbag_1), main = "AIRBAG-1")
+pie(summary(deleteme$Airbag_2), main = "AIRBAG-2")
+pie(summary(deleteme$Airco), main = "AIRCO")
+pie(summary(deleteme$Automatic_airco), main = "AUTOMATIC-AIRCO")
+pie(summary(deleteme$Boardcomputer), main = "BOARDCOMPUTER")
+pie(summary(deleteme$CD_Player), main = "CD-PLAYER")
+pie(summary(deleteme$Central_Lock), main = "CENTRAL-LOCK")
+pie(summary(deleteme$Powered_Windows), main = "POWERED-WINDOWS")
+pie(summary(deleteme$Power_Steering), main = "POWER-STEERING")
+pie(summary(deleteme$Radio), main = "RADIO")
+pie(summary(deleteme$Mistlamps), main = "MITSLAMPS")
+pie(summary(deleteme$Sport_Model), main = "SPORT-MODEL")
+pie(summary(deleteme$Backseat_Divider), main = "BACKSEAT-DIVIDER")
+pie(summary(deleteme$Metallic_Rim), main = "METALIC-RIM")
+pie(summary(deleteme$Radio_cassette), main = "RADIO-CASSETTE")
+pie(summary(deleteme$Tow_Bar), main = "TOW-BAR")
+pie(summary(deleteme$Power_Windows), main = "POWER-WINDOWS")
+```
+Distribución de las variables del dataset datos.
+```{r}
+
+boxplot(datos$Price, main="PRICE")
+boxplot(datos$KM, main="KM")
+boxplot(datos$Age_08_04, main="AGE-08-04")
+boxplot(datos$Mfg_Month, main="MFG-MONTH")
+boxplot(datos$Mfg_Year, main="MFG-YEAR")
+#boxplot(datos$Fuel_Type, main="FUEL-TYPE")
+boxplot(datos$HP, main="HP")
+boxplot(datos$Met_Color, main="MET-COLOR")
+boxplot(datos$Automatic, main="AUTOMATIC")
+boxplot(datos$cc, main="CC")
+boxplot(datos$Doors, main="DOORS")
+boxplot(datos$Cylinders, main="CYLINDERS")
+boxplot(datos$Gears, main="GEARS")
+boxplot(datos$Quarterly_Tax, main="QUARTELY-TAX")
+boxplot(datos$Weight, main="WEIGHT")
+boxplot(datos$Mfr_Guarantee, main="MFR-GUARANTEE")
+boxplot(datos$Guarantee_Period, main="GUARANTEE-PERIOD")
+boxplot(datos$ABS, main="ABS")
+boxplot(datos$Airbag_1, main="AIRBAG-1")
+boxplot(datos$Airbag_2, main="AIRBAG-2")
+boxplot(datos$Airco, main="AIRCO")
+boxplot(datos$BOVAG_Guarantee, main="BOVAG-GUARANTEE")
+boxplot(datos$Automatic_airco, main="AUTOMATIC")
+boxplot(datos$Boardcomputer, main="BOARDCOMPUTER")
+boxplot(datos$CD_Player, main="CD-PLAYER")
+boxplot(datos$Central_Lock, main="CENTRAL-LOCK")
+boxplot(datos$Powered_Windows, main="POWERED-WINDOWS")
+boxplot(datos$Power_Steering, main="POWERED-STEERING")
+boxplot(datos$Radio, main="RADIO")
+boxplot(datos$Mistlamps, main="MISTLAMPS")
+boxplot(datos$Sport_Model, main="SPORT-MODEL")
+boxplot(datos$Backseat_Divider, main="BACKSEAT-DIVIDER")
+boxplot(datos$Metallic_Rim, main="METALLIC-RIM")
+boxplot(datos$Radio_cassette, main="RADIO-CASSETTE")
+boxplot(datos$Tow_Bar, main="TOW-BAR")
+
+```
+Notamos en las distribuciones que hay muchas variables binarias y que las variables que tienen datos continuos presentan muchos problemas.Un ejemplo de esto es el boxplot de precio donde notamos que la mayor distribución se concentra en un aproximado a los $10.000 y despues de $15.000 pueden ser un conjunto de posibles outliers.
+Ahora vamos a elegir a nuestro criterio un conjunto de variables para estudiarlas más a fondo.
+
+
+Dataset elegidos.
+
+```{r}
+dataset = datos[c("Price", "KM", "Age_08_04", "HP", "cc", "Doors", "Gears", "Weight",
+                  "Fuel_Type", "Central_Lock", "Powered_Windows","Automatic_airco")]
+
+#dataset1 = deleteme[c("Price", "KM", "Age_08_04", "HP", "cc", "Doors", "Gears", "Weight", "Fuel_Type", "Central_Lock", "Powered_Windows")]
+```
+
+Una vez conformado el dataset con las variables que elegimos a nuestro criterio, procedemos a realizar la regresión lineal.
+```{r}
+mlr <- lm(formula = Price ~ ., data = dataset)
+summary(mlr)
+
+```
+En este caso en los residuales hay una variación entre los extremos lo que denota que no es simétrico
+entre el 1Q y 3Q los valores se acercan por lo tanto esta dentro de todo bien.
+Al mirar las variables vemos que hay muchas que presentan t value cercanos a ceros lo que deriva en un pr alto
+quitandole significancia a dichas variables para nuestro modelo.para la siguientes regresiones buscaremos excluir 
+las variables que no sean significantes para nuestro modelo.
+
+Nueva selección de variables
+```{r}
+dataset1 <- dataset[c("Price", "KM", "Age_08_04", "HP", "cc", "Doors", "Gears", "Weight",
+                      "Powered_Windows","Automatic_airco")]
+```
+
+```{r}
+mlr2 <- lm(formula = Price ~ ., data =  dataset1)
+
+summary(mlr2)
+```
+En esta nueva regresión podemos notar que la asimetría de los residuales disminuyó de forma leve en comparación con la anterior regresión.
+el modelo se ajusta a la primera regresion ya que al sacar variables insignificantes. pero notamos que siguen  estando variables que para nuestro modelo no tiene relevancia. para un próximo análisis iremos excluyendo dichas variables.
+
+Nueva selección de variables para nuestro dataset.
+```{r}
+dataset3 <- dataset1[c("Price", "KM", "Age_08_04", "HP", "cc", "Gears", "Weight",
+                       "Powered_Windows","Automatic_airco")]
+```
+
+```{r}
+mlr4 <- lm(formula = Price ~ ., data =  dataset3)
+
+summary(mlr4)
+```
+En cuanto a los valores residuales 1Q y 3Q a pesar no estar simétrico mantiene un buen balance, la mediana se acerca a cero, pero en los extremos siguen dispersos lo que lleva a tener residuales que no son simétricos.
+En general los valores de la mayoria de las variables tiene un buen t value y pr salvo algunas variables que tendremos que tener en cuenta para su próxima depuración como por ejemplo Gears y cc, posterior análisis deberemos tomar una decisión de ver si nos quedamos con la misma o la eliminamos del dataset.
+
+
+nuevo dataset 
+```{r}
+dataset4 <- dataset3[c("Price", "KM", "Age_08_04", "HP","Gears", "Weight",
+                       "Powered_Windows","Automatic_airco")]
+```
+
+```{r}
+mlr5 <- lm(formula = Price ~ ., data = dataset4)
+
+summary(mlr5)
+```
+En esta última regresión podemos observar en los residuales que estan dando unos valores bastantes simétricos 
+pero tienden a dispersarse en los extremos lo cual el problema de la simetria continua.
+en cuanto a los 1Q y 3Q estan bastante bien y la mediana esta cerca a cero.
+Las variables tienen un buen t value y pr value notamos que gears entro pero habra que realizarle un nuevo análisis 
+sobre esta variable para ver si continuamos con la misma.
+
+
+########
+# Validación del modelo
+########
+
+Análisis sobre los residuales.
+```{r}
+stem(mlr5$residuals)
+```
+Acá notamos que al aplicar stem  sobre los residuales de la regresión mlr5,confirmamos que no son simétricos en los extremos.
+
+
+```{r}
+plot(predict(mlr5), datos$Price, ylab = "Price" , main = "Valores predecidos vs actuales")
+abline(a=0,b=1, col="blue", lwd=2)
+```
+Con esta gráfica notamos que se concentran las observaciones entre 5000 y 15000 produciendo un área de mayor densidad
+comprendido esto podemos decir también despues de esos valores hay 2 grupo de datos que tendremos que analizar a posterior
+
+```{r}
+plot(residuals(mlr5))
+abline(a=0,b=0, col="blue", lwd =2)
+```
+La gráfica aquí en este caso se ve con bastantes problemas entre 0 a 200 los datos tienden a estar por encima de la recta
+pasa lo mismo en el siguiente rango por lo tanto decimos que no tiene una distribución aleatoria.
+
+```{r}
+hist(mlr5$residuals , main = "Histograma de residuales", freq = F)
+lines(density(mlr5$residuals), col="red", lwd=2)
+```
+En el histograma con una tendencia hacia la derecha lo que seguimos confirmando que los residuales no son simétricos.
+
+```{r}
+plot(mlr5$residuals ~ datos$Price)
+abline(a=0,b=0, col = "blue", lwd=2)
+```
+Se puede observar 3 grupos definidos lo que pùeden llegar a ser un conjunto de posibles outliers.
+desde el 5000 a 15000 es el grupo con mayor densidad, y consideramos que despues de 15000 se podria decir que estamos en presencia de un posible conjunto de outliers.
+
+
+```{r}
+qqnorm(mlr5$residuals)
+
+qqline(mlr$residuals, col = "blue ", lwd=2)
+```
+En esta gráfica se observa alteraciones respecto al patron dominante ( puntos sobre la recta ) por fuera del intervalo de -2 y 2, deberiamos analizar mas a fondo estos puntos ya que pueden ser posibles outliers.
+
+
+```{r}
+plot(mlr5)
+```
+Aplicando plot a la regresion mlr5, podemos representar todas las gráficas que veniamos ejecuando 
+pero con los puntos  (observaciones )donde se encontraria  los posibles outliers. en esta última gráfica se ven los puntos muy dispersos y lo que nos lleva a confirmar que estamos en presencia de outliers los cuales tendran que ser tratados en posterioridad.
+
+
+
+Distribución de las distintas variables frente al precio
+
+```{r}
+ggplot(dataset4, aes(x=KM, y=Price)) + geom_point(colour = "firebrick3") +
+        ggtitle("Distribución Price vs KM")
+```
+
+Con esta gráfica observamos la distribución de los KM frente al precio, y a nuestro criterio observamos que los datos mayores a 150.000km los exlcuiremos del modelo porque consideramos que son autos demasiados viejos, al igual que los datos por debajo de los 15km al cuales consideramos autos practicamente nuevos.
+
+```{r}
+ggplot(dataset4, aes(x=Age_08_04, y=Price)) + geom_point(colour = "firebrick3") + 
+          ggtitle("Distribución Price vs Age_08_04")
+```
+A partir de esta gráfica aplicando nuestro criterio optamos por excluir del modelos a los autos menores a 20 por ser considerados autos demasiados nuevos.
+
+```{r}
+ggplot(dataset4, aes(x=HP, y=Price)) + geom_point(colour = "firebrick3") + 
+        ggtitle("Distribución Price vs HP")
+```
+En este caso notamos que en los mayores a 150 esta muy separado del resto, lo que a nuestro criterio decimos que son outliers y debemos excluirlos del modelo.
+
+
+```{r}
+ggplot(dataset4, aes(x=Weight, y=Price)) + geom_point(colour = "firebrick3") +
+        ggtitle("Distribución Price vs Weight")
+```
+De esta gráfica rescatamos que todos aquellos autos cuyo peso supere los 1200kg debera ser excluido ya que consideramos que son vehiculos que  son caros de mantener en cuanto a consumo de combustible.
+
+
+Las siguientes gráficas son de variables binarias.
+```{r}
+ggplot(dataset4, aes(x=Powered_Windows, y=Price)) + geom_point(colour = "firebrick3") +
+        ggtitle("Distribución Price vs Powered_Windows")
+```
+
+```{r}
+ggplot(dataset4, aes(x=Automatic_airco, y=Price)) + geom_point(colour = "firebrick3") +
+        ggtitle("Distribución Price vs Automatic_airco")
+```
+```{r}
+#dataset2 <- dataset[c("Price", "KM", "Age_08_04", "HP","cc","Gears", "Weight","Powered_Windows","Automatic_airco")]
+```
+
+```{r}
+#mlr3 <- lm(formula = Price ~ ., data =  dataset2)
+
+#summary(mlr3)
+```
+```{r}
+#plot(mlr3)
+```
+
+#######
+# Aplicación de un modelo de análisis de datos: Regresión lineal múltiple
+#######
+
+En base al análisis de los ggplot optamos por limpiar algunas variables para nuestro próximo análisis.
+```{r}
+dataset4 <- filter(dataset4, !(Weight>1200))
+dataset4 <- filter(dataset4,  !(KM>150000))
+dataset4 <- filter(dataset4, !(KM<15))
+dataset4 <- filter(dataset4, !(HP>150))
+dataset4 <- filter(dataset4, !(Age_08_04<20))
+          
+
+```
+
+Visualización del sesgo en la distriibución de las variables elegidas
+```{r}
+skewness(dataset4)
+```
+
+```{r}
+multi.hist(dataset4, dcol = c("blue ", "red"), dlty = c("dotted", "solid"), main = "")
+```
+
+
+```{r}
+pairs(dataset4)
+```
+
+# Correlación de las variables.
+```{r}
+data_correlation <- cor(dataset4)
+data_correlation
+corrplot(data_correlation, method="square")
+```
+Las variables con mayor correlación con respecto al precio son KM, Age,hp, weight, powered_windows, automatic_airco.y notamos que gears no tiene corralación frente al precio lo que decimos sacarla de nuestro modelo ya que no nos aporta nada valor.
+
+Nuevo dataset sin Gears.
+
+```{r}
+dataset5 <- dataset4[c("Price", "KM", "Age_08_04", "Weight","HP", 
+                       "Powered_Windows", "Automatic_airco")]
+
+mlr6 <- lm(formula = Price ~ ., data = dataset5)
+
+summary(mlr6)
+```
+Los residuales siguen sin simetría en cuento a los extremos pero con mejores valores achicando mas la brecha, los 1Q y 3Q los valores bastantes simétricos y la mediana tiende a cero.
+Las variables presenta un buen t value y pr dentro de lo que se estima.
+Entre el r-squared y su adjustado estamos en presencia de un buen modelo.
+
+
+
+
+Para seleccionar la mejor combinación dentro de la regresión utilizamos step.
+
+```{r}
+step(mlr6, direction = "both", trace = 1)
+```
+Con esta sentencia podemos decir que  considera a todas las varibales de nuestro dataset influyentes para el modelo.
+
+
+# Primera Valadación del modelo.
+
+```{r}
+split_data <- createDataPartition(y= dataset5$Price, p=0.7, list= FALSE)
+
+train_data <- dataset5[split_data,]
+test_data <- dataset5[-split_data,]
+
+lmfit1 <- train(Price ~ ., data = train_data, method="lm")
+
+summary(lmfit1)
+```
+Para esta primera validación separamos el dataset en 70% en datos de entrenamiento y 30% en datos de prueba de nuestro último dataset.
+
+```{r}
+predict_test <- predict(lmfit1, test_data)
+
+model_test_1 <- data.frame(obs= test_data$Price, pred = predict_test)
+
+defaultSummary(model_test_1)
+```
+Con esta primera validación podemos decir que el Rsquared de test no hay tanta diferencia entre r squared de los datos de entrenamiento lo cual indica que nuestro modelo predice bien.
+
+
+# Segunda Validación del modelo - Cross Validation
+
+```{r}
+control1 <- trainControl(method="cv", number=10)
+
+lmfit2 <- train(Price ~ ., data= dataset5, method="lm", trControl= control1, metric = "Rsquared")
+
+summary(lmfit2)
+```
+```{r}
+predict_test2 <- predict(lmfit2, dataset5)
+
+model_test_2 <- data.frame(obs=dataset5$Price, pred = predict_test2)
+
+defaultSummary(model_test_2)
+```
+Aplicando Cross Validation también podemos llegar a la misma conclusión: los valores de Rsquared dan los mismos resultados. El modelo predice bien.
+
+# Tercera validación del modelo - Leave One Out Cross Validation
+
+```{r LOOCV}
+
+control2 <- trainControl(method= "LOOCV")
+
+lmfit3 <- train(Price ~ ., data = dataset5, method="lm", trControl=control2)
+
+summary(lmfit3)
+```
+
+```{r}
+predict_test3 <- predict(lmfit3, dataset5)
+
+model_test_3 <- data.frame(obs= dataset5$Price, pred= predict_test3)
+
+defaultSummary(model_test_3)
+```
+Con esta última validación confirmamos que nuestro modelo predice bien ya que el rsquared dan los mismos valores.
+
+```{r}
+ggplot(varImp(lmfit3))
+```
+Con este ggplot podemos ver las variables que tienen importancia para nuestro modelo. y aunque predice bien esto nos esta avisando que a la variable HP tranquilamente la podemos descartar del mismo.
+
+# Conclusión
+
+Teniendo en cuenta que a nuestro modelo le interesa poder predecir un precio a partir de un conjunto de variables, podemos decir que el mismo es bastante acertado para dicho problema y, segun nuestro criterio, siguiendo este pensamiento a la hora de querer vender o comprar un auto usado  podremos aplicarlo y ver los parámetros que  tendremos que tener en cuenta  para poder conseguir la forma mas optima tanto como para vender como para comprar el vehículo en cuestión. Para este problema las variables a tener en cuenta serían, Age_08_04, KM. Weight, Automatic_airco, Powered_Windows.
+Para realizar este informe aplicamos todo lo aprendido desde la interpretación de la estructura de los datos hasta la interpretación de los diferentes gráficos y regresiones; los cuales nos fueron guiando para tomar una decisión basada en la información que cada nuevo concepto y técnica aplicada nos brindo.

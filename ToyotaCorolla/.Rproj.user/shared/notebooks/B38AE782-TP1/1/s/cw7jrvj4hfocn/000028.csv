@@ -1,0 +1,2 @@
+"0","ggplot(dataset4, aes(x=Weight, y=Price)) + geom_point(colour = ""firebrick3"") +"
+"0","        ggtitle(""Distribución Price vs Weight"")"

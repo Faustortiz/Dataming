@@ -1,0 +1,4 @@
+"0","```r
+plot(predict(slm3), data$Price, ylab = \"Price\" , main = \"Valores predecidos vs actuales\")
+abline(a=0,b=1, col=\"blue\", lwd=2)
+```"

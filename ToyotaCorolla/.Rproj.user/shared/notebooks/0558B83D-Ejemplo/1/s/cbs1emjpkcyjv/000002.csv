@@ -1,0 +1,5 @@
+"0","```r
+data <- dummy_cols(data, select_columns= c(\"Fuel_Type\"))
+data$Fuel_Type = NULL
+
+```"

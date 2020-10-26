@@ -1,0 +1,23 @@
+"0","```r
+slm = lm(formula = data$Price~ data$KM)
+summary(slm)
+```"
+"1","
+Call:
+lm(formula = data$Price ~ data$KM)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7558.1 -2030.7  -626.9  1297.6 17991.9 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.451e+04  1.639e+02   88.51   <2e-16 ***
+data$KM     -5.512e-02  2.098e-03  -26.27   <2e-16 ***
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+Residual standard error: 2981 on 1434 degrees of freedom
+Multiple R-squared:  0.3249,	Adjusted R-squared:  0.3244 
+F-statistic:   690 on 1 and 1434 DF,  p-value: < 2.2e-16
+"

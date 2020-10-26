@@ -1,0 +1,4 @@
+"0","```r
+plot(residuals(slm3))
+abline(a=0,b=0, col=\"blue\", lwd =2)
+```"

@@ -1,0 +1,44 @@
+"0","```r
+summary(deleteme)
+```"
+"1","       Id            Model               Price         Age_08_04       Mfg_Month   Mfg_Year         KM               HP       
+ Min.   :   1.0   Length:1436        Min.   : 4350   Min.   : 1.00   1      :207   1998:392   Min.   :     1   Min.   : 69.0  
+ 1st Qu.: 361.8   Class :character   1st Qu.: 8450   1st Qu.:44.00   4      :154   1999:441   1st Qu.: 43000   1st Qu.: 90.0  
+ Median : 721.5   Mode  :character   Median : 9900   Median :61.00   3      :138   2000:225   Median : 63390   Median :110.0  
+ Mean   : 721.6                      Mean   :10731   Mean   :55.95   2      :134   2001:192   Mean   : 68533   Mean   :101.5  
+ 3rd Qu.:1081.2                      3rd Qu.:11950   3rd Qu.:70.00   7      :133   2002: 87   3rd Qu.: 87021   3rd Qu.:110.0  
+ Max.   :1442.0                      Max.   :32500   Max.   :80.00   6      :120   2003: 75   Max.   :243000   Max.   :192.0  
+                                                                     (Other):550   2004: 24                                   
+ Met_Color Automatic       cc        Doors   Cylinders Gears    Quarterly_Tax        Weight     Mfr_Guarantee BOVAG_Guarantee
+ 0:467     0:1356    Min.   : 1300   2:  2   4:1436    3:   2   Min.   : 19.00   Min.   :1000   0:848         0: 150         
+ 1:969     1:  80    1st Qu.: 1400   3:622             4:   1   1st Qu.: 69.00   1st Qu.:1040   1:588         1:1286         
+                     Median : 1600   4:138             5:1390   Median : 85.00   Median :1070                                
+                     Mean   : 1577   5:674             6:  43   Mean   : 87.12   Mean   :1072                                
+                     3rd Qu.: 1600                              3rd Qu.: 85.00   3rd Qu.:1085                                
+                     Max.   :16000                              Max.   :283.00   Max.   :1615                                
+                                                                                                                             
+ Guarantee_Period ABS      Airbag_1 Airbag_2 Airco   Automatic_airco Boardcomputer CD_Player Central_Lock Powered_Windows
+ 3      :1274     0: 268   0:  42   0: 398   0:706   0:1355          0:1013        0:1122    0:603        Min.   :0.000  
+ 6      :  77     1:1168   1:1394   1:1038   1:730   1:  81          1: 423        1: 314    1:833        1st Qu.:0.000  
+ 12     :  73                                                                                             Median :1.000  
+ 24     :   4                                                                                             Mean   :0.562  
+ 36     :   4                                                                                             3rd Qu.:1.000  
+ 13     :   1                                                                                             Max.   :1.000  
+ (Other):   3                                                                                                            
+ Power_Steering Radio    Mistlamps Sport_Model Backseat_Divider Metallic_Rim Radio_cassette Tow_Bar  Fuel_Type_CNG    
+ 0:  32         0:1226   0:1067    0:1005      0: 330           0:1142       0:1227         0:1037   Min.   :0.00000  
+ 1:1404         1: 210   1: 369    1: 431      1:1106           1: 294       1: 209         1: 399   1st Qu.:0.00000  
+                                                                                                     Median :0.00000  
+                                                                                                     Mean   :0.01184  
+                                                                                                     3rd Qu.:0.00000  
+                                                                                                     Max.   :1.00000  
+                                                                                                                      
+ Fuel_Type_Diesel Fuel_Type_Petrol Power_Windows
+ Min.   :0.0000   Min.   :0.0000   0:629        
+ 1st Qu.:0.0000   1st Qu.:1.0000   1:807        
+ Median :0.0000   Median :1.0000                
+ Mean   :0.1079   Mean   :0.8802                
+ 3rd Qu.:0.0000   3rd Qu.:1.0000                
+ Max.   :1.0000   Max.   :1.0000                
+                                                
+"

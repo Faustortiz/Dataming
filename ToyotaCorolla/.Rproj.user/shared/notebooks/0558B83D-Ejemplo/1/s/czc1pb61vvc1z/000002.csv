@@ -1,0 +1,26 @@
+"0","```r
+summary(slm3)
+```"
+"1","
+Call:
+lm(formula = data$Price ~ data$Mfg_Year + data$KM + data$Automatic + 
+    data$Powered_Windows)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7864.8  -936.3   -73.4   754.1 12420.1 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          -3.639e+06  6.356e+04 -57.253  < 2e-16 ***
+data$Mfg_Year         1.826e+03  3.177e+01  57.460  < 2e-16 ***
+data$KM              -1.515e-02  1.272e-03 -11.909  < 2e-16 ***
+data$Automatic        7.423e+02  1.795e+02   4.135 3.76e-05 ***
+data$Powered_Windows  8.361e+02  8.587e+01   9.736  < 2e-16 ***
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+Residual standard error: 1549 on 1431 degrees of freedom
+Multiple R-squared:  0.8181,	Adjusted R-squared:  0.8175 
+F-statistic:  1608 on 4 and 1431 DF,  p-value: < 2.2e-16
+"

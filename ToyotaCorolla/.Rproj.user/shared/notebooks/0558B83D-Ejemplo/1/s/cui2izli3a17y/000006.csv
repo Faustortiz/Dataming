@@ -1,0 +1,6 @@
+"0","```r
+
+qqnorm(slm3$residuals)
+
+qqline(slm3$residuals, col = \"blue \", lwd=2)
+```"

@@ -1,0 +1,1 @@
+"0","hist(mlr5$residuals , main = ""Histograma de residuales"", freq = F)"

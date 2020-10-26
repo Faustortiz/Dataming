@@ -1,0 +1,101 @@
+"0","library(""dplyr"")"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","library(""gdata"")"
+"2","gdata: Unable to locate valid perl interpreter
+gdata: 
+gdata: read.xls() will be unable to read Excel XLS and XLSX files unless the 'perl=' argument is used to specify the location
+gdata: of a valid perl intrpreter.
+gdata: 
+gdata: (To avoid display of this message in the future, please ensure perl is installed and available on the executable search
+gdata: path.)
+"
+"2","gdata: Unable to load perl libaries needed by read.xls()
+gdata: to support 'XLX' (Excel 97-2004) files.
+"
+"2","
+"
+"2","gdata: Unable to load perl libaries needed by read.xls()
+gdata: to support 'XLSX' (Excel 2007+) files.
+"
+"2","
+"
+"2","gdata: Run the function 'installXLSXsupport()'
+gdata: to automatically download and install the perl
+gdata: libaries needed to support Excel XLS and XLSX formats.
+"
+"2","
+Attaching package: ‘gdata’
+
+"
+"2","The following objects are masked from ‘package:dplyr’:
+
+    combine, first, last
+
+"
+"2","The following object is masked from ‘package:stats’:
+
+    nobs
+
+"
+"2","The following object is masked from ‘package:utils’:
+
+    object.size
+
+"
+"2","The following object is masked from ‘package:base’:
+
+    startsWith
+
+"
+"0","library(""corrplot"")"
+"2","corrplot 0.84 loaded
+"
+"0","library(""moments"")"
+"0","library(""fastDummies"")"
+"0","library(""ggplot2"")"
+"2","RStudio Community is a great place to get help: https://community.rstudio.com/c/tidyverse
+"
+"0","library(""psych"")"
+"2","
+Attaching package: ‘psych’
+
+"
+"2","The following objects are masked from ‘package:ggplot2’:
+
+    %+%, alpha
+
+"
+"0","library(""car"")"
+"2","Loading required package: carData
+"
+"2","
+Attaching package: ‘car’
+
+"
+"2","The following object is masked from ‘package:psych’:
+
+    logit
+
+"
+"2","The following object is masked from ‘package:dplyr’:
+
+    recode
+
+"
+"0","library(""corrplot"")"
+"0","library(""caret"")"
+"2","Loading required package: lattice
+"
